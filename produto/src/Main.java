@@ -62,7 +62,7 @@ public class Main {
 
                     break;
                 case 4:
-                    boolean encontrado = false;
+                    encontrado = false;
                     if (listaProdutos.size() > 0){
                         System.out.println("Informe o código do Produto: ");
                         int codigo = scan.nextInt();

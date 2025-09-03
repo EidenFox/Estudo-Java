@@ -9,6 +9,7 @@ public class Main {
 
     public static void main(String[] args) {
 
+        /*  //carga de sistema
         loginDao.cadastrar(new Login("Daniel", "3rcafe@gmail.com", "senha123", "18/08/2025", ""));
         loginDao.cadastrar(new Login("Alice", "alice@example.com", "senha123", "01/01/2025", ""));
         loginDao.cadastrar(new Login("Bruno", "bruno@example.com", "123456", "15/02/2025", ""));
@@ -20,9 +21,9 @@ public class Main {
         loginDao.cadastrar(new Login("Henrique", "henrique@example.com", "pass789", "12/08/2025", ""));
         loginDao.cadastrar(new Login("Isabela", "isabela@example.com", "senha321", "18/08/2025", ""));
         loginDao.cadastrar(new Login("João", "joao@example.com", "joaoSenha", "18/08/2025", ""));
+        */
 
-
-        boolean sair = false;
+        boolean continuar = false;
         int op;
         Scanner scan = new Scanner(System.in);
         do{
@@ -32,7 +33,7 @@ public class Main {
         System.out.println("⌞----------------------⌟");
         System.out.println("[1] Cadastro de Usuários.");
         System.out.println("[2] Listar Usuários.");
-        System.out.println("[3] .");
+        System.out.println("[3] Buscar Usuário.");
         System.out.println("[4] .");
         System.out.println("[5] Sair.");
         op = scan.nextInt();
@@ -42,14 +43,28 @@ public class Main {
             case 1:
                 Login login = new Login();
                 System.out.println("Cadastro de Usuário.\n");
-                System.out.println("Informe o nome do usuário: ");
-                login.setNome(scan.nextLine());
+                do{
+                    System.out.println("Informe o nome do usuário: ");
+                    if(login.setNome(scan.nextLine())){
+                        continuar = true;
+                  }else System.out.println("Nome não pode ser vazio");
+                }while(continuar != true);
 
-                System.out.println("Informe o e-mail: ");
-                login.setEmail(scan.nextLine());
+                do{
+                    continuar = false;
+                    System.out.println("Informe o e-mail: ");
+                    if(login.setEmail(scan.nextLine())){
+                        continuar = true;
+                    }else System.out.println("email não pode ser vazio e deve conter \"@\"");
+                }while (continuar != true);
 
+                do{
+                    continuar = false;
                 System.out.println("Informe a Senha");
-                login.setSenha(scan.nextLine());
+                    if(login.setSenha(scan.nextLine())){
+                        continuar = true;
+                    }else System.out.println("Senha não pode ser vazia");
+                }while (continuar != true);
 
                 login.setStatus(true);
                 login.setDataCadastro("10-08-2025");
@@ -58,6 +73,8 @@ public class Main {
 
                 break;
             case 2:
+                if(!loginDao.getLista().isEmpty()){
+
                 System.out.println("Lista de Usuários.");
 
                 for (Login l : loginDao.getLista()){
@@ -69,22 +86,37 @@ public class Main {
                     System.out.println("Data Cadastro: "+ l.getDataCadastro());
                     System.out.println("Data da Ultima Atualização: "+ l.getDataAtualizacao());
                 }
+                }else System.out.println("\nNenhum Usuário Cadastrado\n.");
 
                 break;
             case 3:
+                System.out.println("Deseja buscar por ID ou NOME?");
+                switch(scan.nextLine().toLowerCase()){
+                    case "nome":
+                        System.out.println("Digite o nome que deseja buscar: ");
+                        loginDao.buscarPorNome(scan.nextLine().toLowerCase());
+                        break;
+                    case "id":
+                        System.out.println("Digite o nome que deseja buscar: ");
+                        loginDao.buscarPorId(scan.nextInt());
+                        break;
+                    default:
+                        System.out.println("Opção Não Inválida, Tente Novamente!\n");
+                        break;
+                }
                 break;
             case 4:
                 break;
             case 5:
                 System.out.println("Saindo");
-                sair = true;
                 break;
             default:
                 System.out.println("Opção Inválida, Tente Novamente!");
                 break;
         }
 
-        }while(!sair);
+        }while(op != 5);
+
 
     }
 }

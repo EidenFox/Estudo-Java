@@ -40,44 +40,31 @@ public class Login {
     }
 
     public void setID(int ID) {
-        if (ID < 0){
-            this.ID = ID;
-        }
-        else{
-            throw new NumberFormatException("ID Deve ser maior que 0");
-        }
+        this.ID = ID;
     }
 
     public String getNome() {
         return nome;
     }
 
-    public boolean setNome(String nome) {
-        if (!nome.isEmpty() && !nome.contains(" ")){
-            this.nome = nome.trim();
-            return true;
-        }
-        else return false;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public boolean setEmail(String email) {
-        if (!email.isEmpty() && email.contains("@")) this.email = email;
-        else return false;
-        return true;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getSenha() {
         return senha;
     }
 
-    public boolean setSenha(String senha) {
-        if (!senha.isEmpty()) this.senha = senha;
-        else return false;
-        return true;
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
     public boolean isStatus() {
@@ -92,24 +79,15 @@ public class Login {
         return dataCadastro;
     }
 
-    public boolean setDataCadastro(String dataCadastro) {
-        if (!dataCadastro.isEmpty()) this.dataCadastro = dataCadastro;
-        else return false;
-        return true;
+    public void setDataCadastro(String dataCadastro) {
+        this.dataCadastro = dataCadastro;
     }
 
     public String getDataAtualizacao() {
         return dataAtualizacao;
     }
 
-    public boolean setDataAtualizacao(String dataAtualizacao) {
-        if (!dataAtualizacao.isEmpty()) this.dataAtualizacao = dataAtualizacao;
-        else return false;
-        return true;
+    public void setDataAtualizacao(String dataAtualizacao) {
+        this.dataAtualizacao = dataAtualizacao;
     }
-
-
-
-
-
 }

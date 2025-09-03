@@ -14,12 +14,12 @@ public class LoginDao {
     public ArrayList<Login> getLista() {
         return lista;
     }
-    public void cadastrar(Login login) {
-        lista.add(login);
+
+    public boolean inserirLogin(Login login) {
+        return lista.add(login);
     }
+
     public void listar(){
-    }
-    public void buscarPorNome(String nome){
 
     }
     public void buscarPorId(int id) {

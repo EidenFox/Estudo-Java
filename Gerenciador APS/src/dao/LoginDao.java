@@ -6,12 +6,15 @@ import java.util.ArrayList;
 
 public class LoginDao {
     public ArrayList<Login> lista;
-
+    public String cargo;
 
     public LoginDao(){
         lista = new ArrayList<>();
         lista.add(new Login("Admin", "admin@admin.com", "admin123", "26/08/2025", "", "Administrador", 0));
+        lista.add(new Login("Admin", "admin", "admin", "26/08/2025", "", "Administrador", 0));
         lista.add(new Login("Daniel", "3rcafe@gmail.com", "12345", "26/08/2025", "", "Administrador", 1));
+        lista.add(new Login("func", "func", "func", "26/08/2025", "", "Funcionário", 1));
+
     }
 
     public ArrayList<Login> getLista() {
@@ -35,13 +38,14 @@ public class LoginDao {
         return lista.getLast().getID();
     }
 
-    public boolean validarLogin(String email, String senha){
+    public String validarLogin(String email, String senha){
         for (int i=0; i < this.getLista().size(); i++){
             if (email.equals(this.getLista().get(i).getEmail()) && senha.equals(this.getLista().get(i).getSenha())){
-                return true;
+//                this.cargo = this.getLista().get(i).cargo;
+                return this.getLista().get(i).cargo;
             }
         }
-        return false;
+        return "false";
     }
 
 }

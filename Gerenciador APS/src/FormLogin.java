@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.Arrays;
+import java.util.Objects;
 
 public class FormLogin extends JFrame{
     private JPanel Main;
@@ -15,10 +16,10 @@ public class FormLogin extends JFrame{
     private JButton esqueciASenhaButton;
     private JButton sairButton;
 
-    LoginDao loginDao = new LoginDao();
+//    LoginDao loginDao = new LoginDao();
 
 
-    public FormLogin(){
+    public FormLogin(LoginDao loginDao){
         setContentPane(Main);
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         setTitle("Login");
@@ -39,10 +40,15 @@ public class FormLogin extends JFrame{
             public void actionPerformed(ActionEvent e) {
             String email = emailTF.getText().toLowerCase();
             String senha = new String(senhaTF.getPassword());
+            String cargo = loginDao.validarLogin(email, senha);
 
-            if(loginDao.validarLogin(email, senha)){
+            if(!cargo.equals("false")){
+
+                System.out.println(loginDao.cargo);
+
                 JOptionPane.showMessageDialog(null, "Logado com Sucesso!");
-                MainMenu mainMenu = new MainMenu();
+
+                MainMenu mainMenu = new MainMenu(cargo, loginDao);
                 mainMenu.setVisible(true);
                 dispose();
 

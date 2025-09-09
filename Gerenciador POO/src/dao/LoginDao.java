@@ -20,9 +20,18 @@ public class LoginDao {
     public void listar(){
     }
     public void buscarPorNome(String nome){
+        for (Login l : lista){
+            if (nome.equals(l.getNome())){
 
+            }
+        }
     }
     public void buscarPorId(int id) {
+        for (Login l : lista){
+            if (id == l.getID()){
+
+            }
+        }
     }
     public void autalizar(Login login) {
     }

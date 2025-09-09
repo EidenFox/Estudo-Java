@@ -21,15 +21,13 @@ FormCadastroo extends JFrame{
     private JRadioButton administradorRadioButton;
     private JPanel cargoPanel;
 
-    LoginDao loginDao;
-
     static int ID;
 
     //Linha 0 do Array de strings
-    String[] colunas = {"ID", "NOME", "E-MAIL", "DATA CADASTRO", "DATA ATUALIZAÇÃO"};
+    String[] colunas = {"ID", "NOME", "E-MAIL", "CARGO", "DATA CADASTRO", "DATA ATUALIZAÇÃO"};
 
     DefaultTableModel model = new DefaultTableModel(colunas, 0);
-    public FormCadastroo() {
+    public FormCadastroo(LoginDao loginDao) {
         table1.setModel(model);
 
         setContentPane(Main);
@@ -38,9 +36,6 @@ FormCadastroo extends JFrame{
         setTitle("Cadastro de Usuários");
         setLocationRelativeTo(null);
         setVisible(true);
-
-
-        loginDao = new LoginDao();
 
 
         cadastrarButton.addActionListener(new ActionListener() {
@@ -91,7 +86,7 @@ FormCadastroo extends JFrame{
 
                 model.setRowCount(0);
                 for (Login l : loginDao.getLista()){
-                    Object[] linha = {l.getID(), l.getNome(), l.getEmail(), l.getDataCadastro(), l.getDataAtualizacao()};
+                    Object[] linha = {l.getID(), l.getNome(), l.getEmail(), l.getCargo(), l.getDataCadastro(), l.getDataAtualizacao()};
                     model.addRow(linha);
 
                 }

@@ -67,9 +67,9 @@ public class Consessionaria {
                     op = scan.nextInt();
                     scan.nextLine();
                     System.out.println("Digite a Marca: ");
-                    String marca = scan.nextLine();
+                    String marca = scan.nextLine().trim();
                     System.out.println("Digite o Modelo: ");
-                    String modelo = scan.nextLine();
+                    String modelo = scan.nextLine().trim();
                     System.out.println("Digite o Ano: ");
                     int ano = scan.nextInt();
                     System.out.println("Digite o Preço: ");
@@ -79,7 +79,7 @@ public class Consessionaria {
                             System.out.println("Digite o Numero de Portas: ");
                             int numeroPortas = scan.nextInt();
                             System.out.println("Digite o Tipo de Combustível: ");
-                            String tipoCombustivel = scan.nextLine();
+                            String tipoCombustivel = scan.nextLine().trim();
                             listaVeiculo.add(new Carro(marca, modelo, ano, preco, numeroPortas, tipoCombustivel));
                             System.out.println("Cadastro Efetuado!");
                             break;
@@ -104,7 +104,7 @@ public class Consessionaria {
                     op = 0;
                     break;
                 case 0:
-                    System.out.println("Saindo...");    
+                    System.out.println("Saindo...");
                     sair = true;
                     break;
                 default:

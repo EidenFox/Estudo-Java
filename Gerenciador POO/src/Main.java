@@ -9,6 +9,8 @@ public class Main {
 
     public static void main(String[] args) {
 
+        loginDao.cadastrar(new Login(1, "admin", "admin@admin.com", "admin", "18/08/2025", ""));
+
         /*  //carga de sistema
         loginDao.cadastrar(new Login("Daniel", "3rcafe@gmail.com", "senha123", "18/08/2025", ""));
         loginDao.cadastrar(new Login("Alice", "alice@example.com", "senha123", "01/01/2025", ""));
@@ -68,6 +70,9 @@ public class Main {
 
                 login.setStatus(true);
                 login.setDataCadastro("10-08-2025");
+                  login.setID(loginDao.returnID());
+//                System.out.println(loginDao.returnID());
+//                login.setID(5);
 
                 loginDao.cadastrar(login);
 
@@ -79,7 +84,8 @@ public class Main {
 
                 for (Login l : loginDao.getLista()){
                     System.out.println("------------------------");
-                    System.out.println("Nome: "+l.getNome());
+                    System.out.println("ID: "+ l.getID());
+                    System.out.println("Nome: "+ l.getNome());
                     System.out.println("E-mail: "+ l.getEmail());
                     System.out.println("Senha: "+ l.getSenha());
                     System.out.println("Status: "+ l.isStatus());
@@ -94,11 +100,13 @@ public class Main {
                 switch(scan.nextLine().toLowerCase()){
                     case "nome":
                         System.out.println("Digite o nome que deseja buscar: ");
-                        loginDao.buscarPorNome(scan.nextLine().toLowerCase());
+                        login = loginDao.buscarPorNome(scan.nextLine().toLowerCase());
+                        System.out.println(login);
                         break;
                     case "id":
-                        System.out.println("Digite o nome que deseja buscar: ");
-                        loginDao.buscarPorId(scan.nextInt());
+                        System.out.println("Digite o ID que deseja buscar: ");
+                        login = loginDao.buscarPorId(scan.nextInt());
+                        System.out.println(login);
                         break;
                     default:
                         System.out.println("Opção Não Inválida, Tente Novamente!\n");

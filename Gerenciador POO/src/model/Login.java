@@ -13,6 +13,14 @@ public class Login {
     }
 
     public Login(String nome, String email, String senha, String dataCadastro, String dataAtualizacao) {
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
+        this.status = true;
+        this.dataCadastro = dataCadastro;
+        this.dataAtualizacao = dataAtualizacao;
+    }
+    public Login(int ID, String nome, String email, String senha, String dataCadastro, String dataAtualizacao) {
         this.ID = ID;
         this.nome = nome;
         this.email = email;
@@ -40,7 +48,7 @@ public class Login {
     }
 
     public void setID(int ID) {
-        if (ID < 0){
+        if (ID > 0){
             this.ID = ID;
         }
         else{

@@ -19,23 +19,29 @@ public class LoginDao {
     }
     public void listar(){
     }
-    public void buscarPorNome(String nome){
+    public Login buscarPorNome(String nome){
         for (Login l : lista){
             if (nome.equals(l.getNome())){
-
+                return l;
             }
         }
+        return null;
     }
-    public void buscarPorId(int id) {
+    public Login buscarPorId(int id) {
         for (Login l : lista){
             if (id == l.getID()){
-
+                return l;
             }
         }
+        return null;
     }
     public void autalizar(Login login) {
     }
     public void autalizarStatus(Login login, boolean status) {
+    }
+
+    public int returnID(){
+        return lista.getLast().getID()+1;
     }
 
 }

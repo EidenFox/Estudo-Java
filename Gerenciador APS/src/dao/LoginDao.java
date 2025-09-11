@@ -14,6 +14,7 @@ public class LoginDao {
         lista.add(new Login("Admin", "admin", "admin", "26/08/2025", "", "Administrador", 0));
         lista.add(new Login("Daniel", "3rcafe@gmail.com", "12345", "26/08/2025", "", "Administrador", 1));
         lista.add(new Login("func", "func", "func", "26/08/2025", "", "Funcionário", 1));
+        lista.add(new Login("cli", "cli", "cli", "26/08/2025", "", "Cliente", 1));
 
     }
 

@@ -62,6 +62,7 @@ public class MainMenu extends JFrame {
             sobreBtn.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
+                    JOptionPane.showMessageDialog(null, "Este programa foi feito como um trabalho da faculdade 'Análise e Desenvolvimento de Sistemas' do SENAC. \nEle possui um sistema de cadastro de usuários, login dos usuários cadastrados, acesso por cargo de areas necessárias para cada cargo e um gerenciador de tarefas.");
                 }
             });
             sairButton.addActionListener(new ActionListener() {

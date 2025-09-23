@@ -16,6 +16,18 @@ public class ListaTarefas {
         this.prazo = prazo;
     }
 
+    @Override
+    public String toString() {
+        return "ListaTarefas{" +
+                "ID=" + ID +
+                ", tarefa='" + tarefa + '\'' +
+                ", descricao='" + descricao + '\'' +
+                ", responsavel='" + responsavel + '\'' +
+                ", cargoRes='" + cargoRes + '\'' +
+                ", prazo='" + prazo + '\'' +
+                '}';
+    }
+
     public String getPrazo() {
         return prazo;
     }

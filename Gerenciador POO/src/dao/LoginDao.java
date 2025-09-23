@@ -21,18 +21,21 @@ public class LoginDao {
     }
     public Login buscarPorNome(String nome){
         for (Login l : lista){
-            if (nome.equals(l.getNome())){
+            if (nome.equals(l.getNome().toLowerCase())){
                 return l;
             }
         }
+        System.out.println("Nenhum Resultado Encontrado");
         return null;
     }
     public Login buscarPorId(int id) {
         for (Login l : lista){
             if (id == l.getID()){
+
                 return l;
             }
         }
+        System.out.println("Nenhum Resultado Encontrado");
         return null;
     }
     public void autalizar(Login login) {

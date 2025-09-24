@@ -10,10 +10,11 @@ public class ListaTarefasDao {
     public ListaTarefasDao(){
         list = new ArrayList<>();
         list.add(new ListaTarefas("Terminar o Código", "Termina logo este código", "Daniel", "Administrador", "Pra ontem"));
+        list.add(new ListaTarefas("Fazer o Código funcionar", "Pelo amor de Deus FUNCIONAAA", "Admin", "Administrador", "Antes do fim dos Tempos"));
 
     }
 
-    public ArrayList<ListaTarefas> getLista() {
+    public ArrayList<ListaTarefas> getListaT() {
         return list;
     }
     public boolean inserirTarefa(ListaTarefas tarefa) {

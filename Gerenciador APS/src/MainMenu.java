@@ -1,3 +1,4 @@
+import dao.ListaTarefasDao;
 import dao.LoginDao;
 
 import javax.swing.*;
@@ -12,7 +13,7 @@ public class MainMenu extends JFrame {
     private JButton sairButton;
 
 
-    public MainMenu(String cargo, LoginDao loginDao){
+    public MainMenu(String cargo, LoginDao loginDao, ListaTarefasDao listaTarefasDao){
         setContentPane(Main);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setSize(600, 500);
@@ -27,6 +28,10 @@ public class MainMenu extends JFrame {
         FormCadastroo formCadastro;
         formCadastro = new FormCadastroo(loginDao);
         formCadastro.setVisible(false);
+
+        Tarefas tarefas;
+        tarefas = new Tarefas(listaTarefasDao);
+        tarefas.setVisible(false);
 
         //MENU//
 //            JMenuBar menuBar = new JMenuBar();
@@ -54,6 +59,10 @@ public class MainMenu extends JFrame {
             tarefasBtn.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
+                    Tarefas tarefas = new Tarefas(listaTarefasDao);
+                    tarefas.setVisible(true);
+                    formCadastro.dispose();
+                    dispose();
 
                 }
             });
@@ -68,7 +77,7 @@ public class MainMenu extends JFrame {
             sairButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    FormLogin formLogin = new FormLogin(loginDao);
+                    FormLogin formLogin = new FormLogin(loginDao, listaTarefasDao);
                     formLogin.setVisible(true);
                     formCadastro.dispose();
                     dispose();

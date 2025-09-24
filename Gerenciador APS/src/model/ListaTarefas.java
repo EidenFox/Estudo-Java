@@ -8,6 +8,9 @@ public class ListaTarefas {
     public String cargoRes;
     public String prazo;
 
+    public ListaTarefas(){
+    }
+
     public ListaTarefas(String tarefa, String descricao, String responsavel, String cargoRes, String prazo){
         this.tarefa = tarefa;
         this.descricao = descricao;

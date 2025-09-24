@@ -22,12 +22,12 @@ public class Tarefas extends JFrame{
     private ButtonGroup cargoResponsavel;
 
 
+    //Linha 0 do Array de strings
+    String[] colunas = {"Tarefa", "Descrição", "Responsavel", "Cargo Responsavel", "Prazo"};
+    DefaultTableModel modelo = new DefaultTableModel(colunas, 0);
 
-    String[] colunas = {"Tarefa", "Descrição", "Responsavel", "Cargo Responsavel", "Prazo", "Concluida"};
-    DefaultTableModel model= new DefaultTableModel(colunas, 0);
-
-    public Tarefas() {
-        tableTarefas.setModel(model);
+    public Tarefas(ListaTarefasDao listaTarefasDao) {
+        tableTarefas.setModel(modelo);
 
         setContentPane(main);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -35,7 +35,6 @@ public class Tarefas extends JFrame{
         setTitle("Gerenciador de Tarefas");
         setLocationRelativeTo(null);
         setVisible(true);
-
 
 
         adicionarTarefaButton.addActionListener(new ActionListener() {
@@ -46,6 +45,8 @@ public class Tarefas extends JFrame{
                 String responsavel = nomeTF.getText();
                 String prazo = prazoTF.getText();
                 String cargo = null;
+
+                //Cargo Res
                 if (clienteRadioButton.isSelected()) {
                     cargo = "Cliente";
                 } else if (funcionarioRadioButton.isSelected()) {
@@ -53,13 +54,16 @@ public class Tarefas extends JFrame{
                 } else if (administradorRadioButton.isSelected()) {
                     cargo = "Administrador";
                 }
+                //Cargo Res//
 
                 if (tarefa.trim().isEmpty() || tarefa.trim().length() > 50) {
                     JOptionPane.showMessageDialog(null, "Tarefa não pode ser vazia nem conter mais do que 50 caracteres!");
                 } else {
-                    ListaTarefas ltarefas = new ListaTarefas(tarefa, descricao, responsavel, cargo, prazo);
-
+                    ListaTarefas listaTarefas = new ListaTarefas(tarefa, descricao, responsavel, cargo, prazo);
+                    listaTarefasDao.inserirTarefa(listaTarefas);
+                    JOptionPane.showMessageDialog(null, "Tarefa Cadastrada com sucesso.");
                 }
+                System.out.println();
             }
 
         });
@@ -67,19 +71,12 @@ public class Tarefas extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                model.setRowCount(0);
-
+                modelo.setRowCount(0);
+                for (ListaTarefas l : listaTarefasDao.getListaT()) {
+                    Object[] linha = {l.getTarefa(), l.getDescricao(), l.getResponsavel(), l.getCargoRes(), l.getCargoRes(), l.getPrazo()};
+                    modelo.addRow(linha);
+                }
             }
         });
-
-    }
-
-
-    public void listarTarefas(){
-        model.setRowCount(0);
-//        for ( l : ) {
-//            Object[] linha = {};
-//            model.addRow(linha);
-//        }
     }
 }

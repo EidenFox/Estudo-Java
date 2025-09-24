@@ -6,8 +6,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class
-FormCadastroo extends JFrame{
+public class FormCadastroo extends JFrame{
     private JPanel Main;
     private JTextField tfMail;
     private JPasswordField tfPassword;
@@ -27,6 +26,7 @@ FormCadastroo extends JFrame{
     String[] colunas = {"ID", "NOME", "E-MAIL", "CARGO", "DATA CADASTRO", "DATA ATUALIZAÇÃO"};
 
     DefaultTableModel model = new DefaultTableModel(colunas, 0);
+
     public FormCadastroo(LoginDao loginDao) {
         table1.setModel(model);
 

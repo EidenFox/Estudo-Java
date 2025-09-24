@@ -80,7 +80,7 @@ public class Tarefas extends JFrame{
     public void atualizaLista(ListaTarefasDao listaTarefasDao){
         modelo.setRowCount(0);
         for (ListaTarefas l : listaTarefasDao.getListaT()) {
-            Object[] linha = {l.getTarefa(), l.getDescricao(), l.getResponsavel(), l.getCargoRes(), l.getCargoRes(), l.getPrazo()};
+            Object[] linha = {l.getTarefa(), l.getDescricao(), l.getResponsavel(), l.getCargoRes(), l.getPrazo()};
             modelo.addRow(linha);
             System.out.println("PRAZO: "+ l.getPrazo());
         }

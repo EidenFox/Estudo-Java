@@ -6,14 +6,13 @@ public class Main {
 
 
     public static void main(String[] args) {
-//        LoginDao loginDao;
-//        loginDao = new LoginDao();
-//
-//        FormLogin formLogin = new FormLogin(loginDao);
-//        formLogin.setVisible(true);
+        LoginDao loginDao;
+        loginDao = new LoginDao();
+        ListaTarefasDao listaTarefasDao;
+        listaTarefasDao = new ListaTarefasDao();
 
-        Tarefas formtarefas = new Tarefas();
-        formtarefas.setVisible(true);
+        FormLogin formLogin = new FormLogin(loginDao, listaTarefasDao);
+        formLogin.setVisible(true);
 
 
     }

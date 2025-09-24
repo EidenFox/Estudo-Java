@@ -1,12 +1,11 @@
 import dao.LoginDao;
+import dao.ListaTarefasDao;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.util.Arrays;
-import java.util.Objects;
 
 public class FormLogin extends JFrame{
     private JPanel Main;
@@ -19,7 +18,7 @@ public class FormLogin extends JFrame{
 //    LoginDao loginDao = new LoginDao();
 
 
-    public FormLogin(LoginDao loginDao){
+    public FormLogin(LoginDao loginDao, ListaTarefasDao listaTarefasDao){
         setContentPane(Main);
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         setTitle("Login");
@@ -48,7 +47,7 @@ public class FormLogin extends JFrame{
 
                 JOptionPane.showMessageDialog(null, "Logado com Sucesso!");
 
-                MainMenu mainMenu = new MainMenu(cargo, loginDao);
+                MainMenu mainMenu = new MainMenu(cargo, loginDao, listaTarefasDao);
                 mainMenu.setVisible(true);
                 dispose();
 

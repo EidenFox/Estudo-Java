@@ -12,7 +12,7 @@ public class Main {
         loginDao.cadastrar(new Login(1, "admin", "admin@admin.com", "admin", "18/08/2025", ""));
 
 //        /*  //carga de sistema
-        loginDao.cadastrar(new Login(2, "Daniel", "3rcafe@gmail.com", "senha123", "18/08/2025", ""));
+        loginDao.cadastrar(new Login(2, "Daniel", "daniel@daniel.com", "senha123", "18/08/2025", ""));
         loginDao.cadastrar(new Login(3, "Alice", "alice@example.com", "senha123", "01/01/2025", ""));
         loginDao.cadastrar(new Login(5, "Bruno", "bruno@example.com", "123456", "15/02/2025", ""));
         loginDao.cadastrar(new Login(6, "Carla", "carla@example.com", "abc123", "20/03/2025", ""));

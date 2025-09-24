@@ -13,7 +13,7 @@ public class MainMenu extends JFrame {
     private JButton sairButton;
 
 
-    public MainMenu(String cargo, LoginDao loginDao, ListaTarefasDao listaTarefasDao){
+    public MainMenu(String cargo, String nome, LoginDao loginDao, ListaTarefasDao listaTarefasDao){
         setContentPane(Main);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setSize(600, 500);
@@ -30,7 +30,7 @@ public class MainMenu extends JFrame {
         formCadastro.setVisible(false);
 
         Tarefas tarefas;
-        tarefas = new Tarefas(listaTarefasDao);
+        tarefas = new Tarefas(listaTarefasDao, nome, cargo);
         tarefas.setVisible(false);
 
         //MENU//
@@ -59,11 +59,8 @@ public class MainMenu extends JFrame {
             tarefasBtn.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    Tarefas tarefas = new Tarefas(listaTarefasDao);
                     tarefas.setVisible(true);
                     formCadastro.dispose();
-                    dispose();
-
                 }
             });
 
@@ -89,7 +86,7 @@ public class MainMenu extends JFrame {
         switch(cargo){
             case "Cliente":
                 cadUsrBtn.setEnabled(false);
-                tarefasBtn.setEnabled(false);
+                tarefasBtn.setEnabled(true);
                 sobreBtn.setEnabled(true);
                 break;
             case "Funcionário":

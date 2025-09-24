@@ -70,7 +70,7 @@ public class FormCadastroo extends JFrame{
                     ID = loginDao.returnID() + 1;
                     System.out.println("ID: "+ ID);
 
-                    Login login = new Login(nome, email, senha, dataCadastro, dataAtualizacao, cargo, 0);
+                    Login login = new Login(nome, email.toLowerCase(), senha, dataCadastro, dataAtualizacao, cargo, 0);
                     login.setID(ID);
                     loginDao.inserirLogin(login);
                     JOptionPane.showMessageDialog(null, "Usuário Cadastrado com sucesso.");

@@ -39,7 +39,8 @@ public class FormLogin extends JFrame{
             public void actionPerformed(ActionEvent e) {
             String email = emailTF.getText().toLowerCase();
             String senha = new String(senhaTF.getPassword());
-            String cargo = loginDao.validarLogin(email, senha);
+            String cargo = loginDao.validarLoginC(email, senha);
+            String nome = loginDao.validarLoginN(email, senha);
 
             if(!cargo.equals("false")){
 
@@ -47,7 +48,7 @@ public class FormLogin extends JFrame{
 
                 JOptionPane.showMessageDialog(null, "Logado com Sucesso!");
 
-                MainMenu mainMenu = new MainMenu(cargo, loginDao, listaTarefasDao);
+                MainMenu mainMenu = new MainMenu(cargo, nome, loginDao, listaTarefasDao);
                 mainMenu.setVisible(true);
                 dispose();
 

@@ -63,7 +63,8 @@ public class Tarefas extends JFrame{
                     listaTarefasDao.inserirTarefa(listaTarefas);
                     JOptionPane.showMessageDialog(null, "Tarefa Cadastrada com sucesso.");
                 }
-                System.out.println();
+                System.out.println(listaTarefasDao.getListaT());
+                atualizaLista(listaTarefasDao);
             }
 
         });
@@ -71,12 +72,18 @@ public class Tarefas extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                modelo.setRowCount(0);
-                for (ListaTarefas l : listaTarefasDao.getListaT()) {
-                    Object[] linha = {l.getTarefa(), l.getDescricao(), l.getResponsavel(), l.getCargoRes(), l.getCargoRes(), l.getPrazo()};
-                    modelo.addRow(linha);
-                }
+                atualizaLista(listaTarefasDao);
             }
         });
+    }
+
+    public void atualizaLista(ListaTarefasDao listaTarefasDao){
+        modelo.setRowCount(0);
+        for (ListaTarefas l : listaTarefasDao.getListaT()) {
+            Object[] linha = {l.getTarefa(), l.getDescricao(), l.getResponsavel(), l.getCargoRes(), l.getCargoRes(), l.getPrazo()};
+            modelo.addRow(linha);
+            System.out.println("PRAZO: "+ l.getPrazo());
+        }
+
     }
 }

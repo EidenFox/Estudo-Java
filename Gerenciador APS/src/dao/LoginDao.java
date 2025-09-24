@@ -39,11 +39,18 @@ public class LoginDao {
         return lista.getLast().getID();
     }
 
-    public String validarLogin(String email, String senha){
+    public String validarLoginC(String email, String senha){
         for (int i=0; i < this.getLista().size(); i++){
-            if (email.equals(this.getLista().get(i).getEmail()) && senha.equals(this.getLista().get(i).getSenha())){
-//                this.cargo = this.getLista().get(i).cargo;
-                return this.getLista().get(i).cargo;
+            if (email.equalsIgnoreCase(this.getLista().get(i).getEmail()) && senha.equals(this.getLista().get(i).getSenha())){
+                return cargo = this.getLista().get(i).cargo;
+            }
+        }
+        return "false";
+    }
+    public String validarLoginN(String email, String senha){
+        for (int i=0; i < this.getLista().size(); i++){
+            if (email.equalsIgnoreCase(this.getLista().get(i).getEmail()) && senha.equals(this.getLista().get(i).getSenha())){
+                return this.getLista().get(i).nome;
             }
         }
         return "false";

@@ -19,6 +19,8 @@ public class Tarefas extends JFrame{
     private JButton adicionarTarefaButton;
     private JButton atualizarPaginaButton;
     private JTextArea descricaoTA;
+    private JButton filtrarPorCargoButton;
+    private JButton filtrarPorResponsavelButton;
     private ButtonGroup cargoResponsavel;
 
 
@@ -26,7 +28,7 @@ public class Tarefas extends JFrame{
     String[] colunas = {"Tarefa", "Descrição", "Responsavel", "Cargo Responsavel", "Prazo"};
     DefaultTableModel modelo = new DefaultTableModel(colunas, 0);
 
-    public Tarefas(ListaTarefasDao listaTarefasDao) {
+    public Tarefas(ListaTarefasDao listaTarefasDao, String nomeUser, String cargoUser) {
         tableTarefas.setModel(modelo);
 
         setContentPane(main);
@@ -75,6 +77,18 @@ public class Tarefas extends JFrame{
                 atualizaLista(listaTarefasDao);
             }
         });
+        filtrarPorCargoButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                filtroCargo(listaTarefasDao, cargoUser);
+            }
+        });
+        filtrarPorResponsavelButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                filtroNome(listaTarefasDao, nomeUser);
+            }
+        });
     }
 
     public void atualizaLista(ListaTarefasDao listaTarefasDao){
@@ -82,8 +96,29 @@ public class Tarefas extends JFrame{
         for (ListaTarefas l : listaTarefasDao.getListaT()) {
             Object[] linha = {l.getTarefa(), l.getDescricao(), l.getResponsavel(), l.getCargoRes(), l.getPrazo()};
             modelo.addRow(linha);
-            System.out.println("PRAZO: "+ l.getPrazo());
         }
-
     }
+
+    public void filtroNome(ListaTarefasDao listaTarefasDao, String nome) {
+        modelo.setRowCount(0);
+        for (ListaTarefas l : listaTarefasDao.getListaT()) {
+            if(nome.toLowerCase().contains(l.getResponsavel().toLowerCase())) {
+                Object[] linha = {l.getTarefa(), l.getDescricao(), l.getResponsavel(), l.getCargoRes(), l.getPrazo()};
+                modelo.addRow(linha);
+            }
+        }
+    }
+
+    public void filtroCargo(ListaTarefasDao listaTarefasDao, String cargo) {
+        modelo.setRowCount(0);
+        for (ListaTarefas l : listaTarefasDao.getListaT()) {
+            if(cargo.equals(l.getCargoRes())){
+                Object[] linha = {l.getTarefa(), l.getDescricao(), l.getResponsavel(), l.getCargoRes(), l.getPrazo()};
+                modelo.addRow(linha);
+            }
+        }
+    }
+
+
+
 }

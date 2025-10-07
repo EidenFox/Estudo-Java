@@ -2,9 +2,12 @@ package DAO;
 import Modelo.Produto;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProdutoDao {
-    public  void inserir(Produto produto){
+    public void inserir(Produto produto) {
         String sql = "INSERT INTO produto (nome, preco, quantidade) VALUES (?, ?, ?)";
 
         try (Connection conn = Conexao.conectar();
@@ -15,9 +18,31 @@ public class ProdutoDao {
             stmt.executeUpdate();
 
             System.out.println("Produto cadastrado com sucesso!");
-        }catch (Exception e){
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public List<Produto> listarTodos() {
+        List<Produto> produtos = new ArrayList<>();
+        String sql = "Select * from produto order by nome ASC";
+
+        try (Connection conn = Conexao.conectar();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+            while (rs.next()) {
+                Produto p = new Produto();
+                p.setID(rs.getInt("id"));
+                p.setNome(rs.getString("nome"));
+                p.setPreco(rs.getDouble("preco"));
+                p.setQuantidade(rs.getInt("quantidade"));
+                produtos.add(p);
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
+        return produtos;
     }
 }

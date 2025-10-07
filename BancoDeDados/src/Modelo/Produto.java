@@ -1,9 +1,10 @@
 package Modelo;
 
 public class Produto {
-private String nome;
-private double preco;
-private int quantidade;
+    private int ID;
+    private String nome;
+    private double preco;
+    private int quantidade;
 
     public Produto (){
 
@@ -37,5 +38,13 @@ private int quantidade;
 
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
     }
 }

@@ -6,10 +6,18 @@ import java.security.Permission;
 
 public class Main {
     public static void main() {
-//        Produto produto = new Produto("Açucar 5km", 15.98, 2);
 
         ProdutoDao produtoDao = new ProdutoDao();
+
+            //Insere um novo produto
+//        Produto produto = new Produto("Sal 5kg", 5.98, 24);
 //        produtoDao.inserir(produto);
+
+            //Edita um produto
+//        Produto produtoAtualizar = new Produto("Batata frita 1kg", 22.45, 2);
+//        produtoAtualizar.setID(3);
+//        produtoDao.atualizar(produtoAtualizar);
+
 
         for (Produto p: produtoDao.listarTodos()){
             System.out.println("\n-------------------------");

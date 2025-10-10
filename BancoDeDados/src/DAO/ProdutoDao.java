@@ -26,28 +26,32 @@ public class ProdutoDao {
     }
 
 
-    public List<Produto> listarTodos() {
+    public List<Produto> listarTodos(boolean estado) {
         List<Produto> produtos = new ArrayList<>();
-        String sql = "Select * from produto WHERE state = 1 order by id ASC";
+        String sql = "SELECT * FROM produto WHERE state = ? ORDER BY id ASC";
 
         try (Connection conn = Conexao.conectar();
-             PreparedStatement stmt = conn.prepareStatement(sql);
-             ResultSet rs = stmt.executeQuery()) {
-            while (rs.next()) {
-                Produto p = new Produto();
-                p.setID(rs.getInt("id"));
-                p.setNome(rs.getString("nome"));
-                p.setPreco(rs.getDouble("preco"));
-                p.setQuantidade(rs.getInt("quantidade"));
-                produtos.add(p);
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setBoolean(1, estado);
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    Produto p = new Produto();
+                    p.setID(rs.getInt("id"));
+                    p.setNome(rs.getString("nome"));
+                    p.setPreco(rs.getDouble("preco"));
+                    p.setQuantidade(rs.getInt("quantidade"));
+                    produtos.add(p);
+                }
             }
+
         } catch (Exception e) {
-            System.out.println("Erro: "+ e.getMessage());
+            System.out.println("Erro: " + e.getMessage());
             e.printStackTrace();
         }
 
         return produtos;
     }
+
 
     public void atualizar(Produto produto){
         String sql = "UPDATE produto SET nome = ?, preco = ?, quantidade = ? WHERE id = ?";

@@ -5,6 +5,7 @@ public class Produto {
     private String nome;
     private double preco;
     private int quantidade;
+    private boolean estado;
 
     public Produto (){
 
@@ -46,5 +47,13 @@ public class Produto {
 
     public void setID(int ID) {
         this.ID = ID;
+    }
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
     }
 }

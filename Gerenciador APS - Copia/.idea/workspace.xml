@@ -5,15 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1303305b-f9a3-45f6-b073-273a4b2315c7" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../Gerenciadoooooooooooor/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Gerenciador APS/src/FormCadastro.form" beforeDir="false" afterPath="$PROJECT_DIR$/../Gerenciador APS/src/FormCadastroo.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Gerenciador APS/src/FormCadastro.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Gerenciador APS/src/FormCadastroo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Gerenciador APS/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Gerenciador APS/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Gerenciador APS/src/dao/LoginDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Gerenciador APS/src/dao/LoginDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Gerenciador APS/src/model/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Gerenciador APS/src/model/Login.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Gerenciador POO/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Gerenciador POO/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Gerenciador POO/src/dao/LoginDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Gerenciador POO/src/dao/LoginDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Gerenciador POO/src/model/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Gerenciador POO/src/model/Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BancoDeDados/src/FormGerenciadorEstoque.form" beforeDir="false" afterPath="$PROJECT_DIR$/../BancoDeDados/src/FormGerenciadorEstoque.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BancoDeDados/src/FormGerenciadorEstoque.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BancoDeDados/src/FormGerenciadorEstoque.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BancoDeDados/src/MainForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BancoDeDados/src/MainForm.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

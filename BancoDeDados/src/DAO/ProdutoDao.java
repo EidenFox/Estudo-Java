@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProdutoDao {
-    public void inserir(Produto produto) {
+    public boolean inserir(Produto produto) {
         String sql = "INSERT INTO produto (nome, preco, quantidade) VALUES (?, ?, ?)";
 
         try (Connection conn = Conexao.conectar();
@@ -19,9 +19,11 @@ public class ProdutoDao {
             stmt.executeUpdate();
 
             System.out.println("Produto cadastrado com sucesso!");
+            return true;
         } catch (Exception e) {
             System.out.println("Erro: "+ e.getMessage());
             e.printStackTrace();
+            return false;
         }
     }
 
@@ -53,7 +55,7 @@ public class ProdutoDao {
     }
 
 
-    public void atualizar(Produto produto){
+    public boolean atualizar(Produto produto){
         String sql = "UPDATE produto SET nome = ?, preco = ?, quantidade = ? WHERE id = ?";
 
         try (Connection conn = Conexao.conectar();
@@ -64,10 +66,11 @@ public class ProdutoDao {
             stmt.setInt(4, produto.getID());
             stmt.executeUpdate();
             System.out.println("Produto Atualizado com sucesso!");
-
+            return true;
         }catch (SQLException e){
             System.out.println("Erro: "+ e.getMessage());
             e.printStackTrace();
+            return false;
         }
     }
 

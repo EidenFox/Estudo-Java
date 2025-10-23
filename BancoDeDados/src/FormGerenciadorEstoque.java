@@ -4,7 +4,6 @@ import Modelo.Produto;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentAdapter;
 import javax.swing.table.DefaultTableModel;
 
 public class FormGerenciadorEstoque extends JFrame{
@@ -19,6 +18,7 @@ public class FormGerenciadorEstoque extends JFrame{
     private JTextField TotalTF;
     private JButton calcelarButton;
     private JButton editarButton;
+    private JComboBox categoriaCB;
 
     ProdutoDao produtoDao = new ProdutoDao();
     static int id;
@@ -26,7 +26,7 @@ public class FormGerenciadorEstoque extends JFrame{
 
 
     //Array de string para rótulo da tabla
-    String[] colunas = {"ID", "NOME", "PREÇO", "QUANTIDADE"};
+    String[] colunas = {"ID", "NOME", "PREÇO", "QUANTIDADE", "TOTAL"};
 
     //inserindo modelo
     DefaultTableModel model = new DefaultTableModel(colunas, 0);
@@ -97,32 +97,59 @@ public class FormGerenciadorEstoque extends JFrame{
                 }
 
                 limparcampos();
+                salvarButton.setText("Salvar");
                 habilitarCampos(false);
                 listarProdutos();
 
             }
         });
+
         calcelarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 limparcampos();
+                salvarButton.setText("Salvar");
+                excluirButton.setEnabled(false);
                 habilitarCampos(false);
             }
         });
-        table1.addComponentListener(new ComponentAdapter() {
-        });
+
         editarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int linhaselecionada = table1.getSelectedRow();
                 if(linhaselecionada != -1){
                     ProdutoTF.setText(table1.getValueAt(linhaselecionada, 1).toString());
-                    QuantidadeTF.setText(table1.getValueAt(linhaselecionada, 2).toString());
-                    PrecoTF.setText(table1.getValueAt(linhaselecionada, 3).toString());
+                    PrecoTF.setText(table1.getValueAt(linhaselecionada, 2).toString());
+                    QuantidadeTF.setText(table1.getValueAt(linhaselecionada, 3).toString());
                     id = Integer.parseInt(table1.getValueAt(linhaselecionada, 0).toString());
+
                     habilitarCampos(true);
+                    excluirButton.setEnabled(true);
+                    editarButton.setEnabled(false);
                     salvarButton.setText("Atualizar");
                 }
+                linhaselecionada = -1;
+                table1.clearSelection();
+            }
+        });
+        excluirButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int resposta = JOptionPane.showConfirmDialog(null, "Deseja Excluir? Não há retorno O_O", "EXCLUIR PRODUTO", JOptionPane.YES_NO_OPTION);
+                if(resposta == JOptionPane.YES_NO_OPTION){
+                    if(produtoDao.excluir(id)){
+                        JOptionPane.showMessageDialog(null, "Registro Excluido com Suvesso OwO", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Falha ao excluir produto q_q", "ERRO", JOptionPane.ERROR_MESSAGE);
+                    }
+                }else {
+                    JOptionPane.showMessageDialog(null, "Exclusão Cancelada pelo Usuário (˶>˶˶<˶)", "CANCELADO", JOptionPane.ERROR_MESSAGE);
+                }
+                limparcampos();
+                listarProdutos();
+                excluirButton.setEnabled(false);
+                habilitarCampos(false);
             }
         });
     }
@@ -134,6 +161,10 @@ public class FormGerenciadorEstoque extends JFrame{
         salvarButton.setEnabled(status);
         calcelarButton.setEnabled(status);
         adicionarButton.setEnabled(!status);
+        editarButton.setEnabled(!status);
+        table1.clearSelection();
+        salvarButton.setText("Salvar");
+
     }
 
     public void limparcampos(){
@@ -150,7 +181,8 @@ public class FormGerenciadorEstoque extends JFrame{
                     p.getID(),
                     p.getNome(),
                     p.getPreco(),
-                    p.getQuantidade()
+                    p.getQuantidade(),
+                    p.getQuantidade() * p.getPreco()
             };
             total = total + (p.getPreco() * p.getQuantidade());
             model.addRow(linha);

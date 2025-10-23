@@ -74,7 +74,7 @@ public class ProdutoDao {
         }
     }
 
-    public void excluir(int id){
+    public boolean excluir(int id){
         String sql = "UPDATE produto SET state = 0 WHERE id = ?";
 
         try(Connection conn = Conexao.conectar();
@@ -85,7 +85,9 @@ public class ProdutoDao {
         } catch (Exception e) {
             System.out.println("Erro: "+ e.getMessage());
             e.printStackTrace();
+            return false;
         }
+        return true;
     }
 
     public void reativar(int id){

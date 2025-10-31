@@ -7,7 +7,6 @@ public class Time {
      this.setNome(nome);
      this.setEstadio(estadio);
 
-     this.setSocioTorcedor(socioTorcedor);
     }
 
     public String getNome() {
@@ -26,20 +25,7 @@ public class Time {
         this.estadio = estadio;
     }
 
-    public SocioTorcedor getSocioTorcedor() {
-        return socioTorcedor;
-    }
 
-    public void setSocioTorcedor(SocioTorcedor socioTorcedor) {
-        this.socioTorcedor = socioTorcedor;
-    }
 
-    @Override
-    public String toString() {
-        return "Time{" +
-                "nome='" + nome + '\'' +
-                ", estadio=" + estadio +
-                ", socioTorcedor=" + socioTorcedor +
-                '}';
-    }
+
 }

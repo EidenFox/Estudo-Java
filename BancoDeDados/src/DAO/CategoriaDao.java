@@ -91,4 +91,24 @@ public class CategoriaDao {
 
 
 
+    public boolean atualizar(Categoria categoria){
+        String sql = "UPDATE categoria SET nomeCategoria = ?, descricaoCategoria = ? WHERE id = ?";
+
+        try (Connection conn = Conexao.conectar();
+             PreparedStatement stmt = conn.prepareStatement(sql)){
+            stmt.setString(1, categoria.getNome());
+            stmt.setString(2, categoria.getDescicao());
+            stmt.setInt(3, categoria.getID());
+            stmt.executeUpdate();
+            System.out.println("Categoria Atualizado com sucesso!");
+            return true;
+        }catch (SQLException e){
+            System.out.println("Erro: "+ e.getMessage());
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
+
 }

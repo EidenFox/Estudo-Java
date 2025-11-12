@@ -6,15 +6,17 @@ public class Produto {
     private double preco;
     private int quantidade;
     private boolean estado;
+    private Categoria categoria;
 
     public Produto (){
 
     }
 
-    public Produto (String nome, double preco, int quantidade){
+    public Produto (String nome, double preco, int quantidade, Categoria categoria){
         this.setNome(nome);
         this.setQuantidade(quantidade);
         this.setPreco(preco);
+        this.setCategoria(categoria);
     }
 
     public String getNome() {
@@ -55,5 +57,14 @@ public class Produto {
 
     public void setEstado(boolean estado) {
         this.estado = estado;
+    }
+
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
 }

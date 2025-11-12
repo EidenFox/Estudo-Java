@@ -1,4 +1,5 @@
 package DAO;
+import Modelo.Categoria;
 import Modelo.Produto;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,13 +10,15 @@ import java.util.List;
 
 public class ProdutoDao {
     public boolean inserir(Produto produto) {
-        String sql = "INSERT INTO produto (nome, preco, quantidade) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO produto (nome, preco, quantidade, categoria) VALUES (?, ?, ?, ?)";
+
 
         try (Connection conn = Conexao.conectar();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, produto.getNome());
             stmt.setDouble(2, produto.getPreco());
             stmt.setInt(3, produto.getQuantidade());
+            stmt.setInt(4, produto.getCategoria().getID());
             stmt.executeUpdate();
 
             System.out.println("Produto cadastrado com sucesso!");
@@ -30,18 +33,24 @@ public class ProdutoDao {
 
     public List<Produto> listarTodos(boolean estado) {
         List<Produto> produtos = new ArrayList<>();
-        String sql = "SELECT * FROM produto WHERE state = ? ORDER BY id ASC";
+        String sql = "SELECT * FROM produto, categoria WHERE produto.state = ? AND produto.categoria = categoria.id ORDER BY produto.id ASC";
 
         try (Connection conn = Conexao.conectar();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setBoolean(1, estado);
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
+                    Categoria c = new Categoria();
                     Produto p = new Produto();
                     p.setID(rs.getInt("id"));
                     p.setNome(rs.getString("nome"));
                     p.setPreco(rs.getDouble("preco"));
                     p.setQuantidade(rs.getInt("quantidade"));
+
+                    c.setID(rs.getInt("id"));
+                    c.setNome(rs.getString("nomeCategoria"));
+
+                    p.setCategoria(c);
                     produtos.add(p);
                 }
             }
@@ -56,14 +65,15 @@ public class ProdutoDao {
 
 
     public boolean atualizar(Produto produto){
-        String sql = "UPDATE produto SET nome = ?, preco = ?, quantidade = ? WHERE id = ?";
+        String sql = "UPDATE produto SET nome = ?, preco = ?, quantidade = ?, categoria = ? WHERE id = ?";
 
         try (Connection conn = Conexao.conectar();
         PreparedStatement stmt = conn.prepareStatement(sql)){
             stmt.setString(1, produto.getNome());
-            stmt.setDouble(2, produto.getPreco());
+            stmt.setDouble(2, produto.getID());
             stmt.setInt(3, produto.getQuantidade());
-            stmt.setInt(4, produto.getID());
+            stmt.setInt(4, produto.getCategoria().getID());
+            stmt.setInt(5, produto.getID());
             stmt.executeUpdate();
             System.out.println("Produto Atualizado com sucesso!");
             return true;

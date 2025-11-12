@@ -1,9 +1,12 @@
+import DAO.CategoriaDao;
 import DAO.ProdutoDao;
+import Modelo.Categoria;
 import Modelo.Produto;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 public class FormGerenciadorEstoque extends JFrame{
@@ -18,7 +21,7 @@ public class FormGerenciadorEstoque extends JFrame{
     private JTextField TotalTF;
     private JButton calcelarButton;
     private JButton editarButton;
-    private JComboBox categoriaCB;
+    private JComboBox<Categoria> categoriaCB;
 
     ProdutoDao produtoDao = new ProdutoDao();
     static int id;
@@ -26,7 +29,7 @@ public class FormGerenciadorEstoque extends JFrame{
 
 
     //Array de string para rótulo da tabla
-    String[] colunas = {"ID", "NOME", "PREÇO", "QUANTIDADE", "TOTAL"};
+    String[] colunas = {"ID", "NOME", "PREÇO", "QUANTIDADE", "CATEGORIA", "TOTAL"};
 
     //inserindo modelo
     DefaultTableModel model = new DefaultTableModel(colunas, 0);
@@ -79,8 +82,10 @@ public class FormGerenciadorEstoque extends JFrame{
                     return;
                 }
 
+                Categoria categoriaSelecionada = (Categoria) categoriaCB.getSelectedItem();
 
-                Produto produto = new Produto(nome, preco, quantidade);
+
+                Produto produto = new Produto(nome, preco, quantidade, categoriaSelecionada);
                 if(salvarButton.getText().equals("Salvar")){
                     if(produtoDao.inserir(produto)){
                         JOptionPane.showMessageDialog(null, "Produto cadastrado com suscesso UwU");
@@ -164,6 +169,19 @@ public class FormGerenciadorEstoque extends JFrame{
         editarButton.setEnabled(!status);
         table1.clearSelection();
         salvarButton.setText("Salvar");
+        carregarCategorias();
+
+    }
+
+    public void carregarCategorias(){
+        CategoriaDao categoriaDao = new CategoriaDao();
+        List<Categoria> lista = categoriaDao.categoriaList(true);
+
+        categoriaCB.removeAllItems();
+        for (Categoria c : lista){
+            categoriaCB.addItem(c);
+        }
+
 
     }
 
@@ -182,6 +200,7 @@ public class FormGerenciadorEstoque extends JFrame{
                     p.getNome(),
                     p.getPreco(),
                     p.getQuantidade(),
+                    p.getCategoria().getNome(),
                     p.getQuantidade() * p.getPreco()
             };
             total = total + (p.getPreco() * p.getQuantidade());

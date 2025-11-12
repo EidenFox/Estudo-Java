@@ -3,7 +3,7 @@
     private String telefone;
     private  double saldo;
 
-    public  Conta(String titular, String telefone, double saldo){
+    public Conta(String titular, String telefone, double saldo){
         this.setTitular(titular);
         this.setTelefone(telefone);
         this.setSaldo(saldo);

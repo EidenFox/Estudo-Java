@@ -26,7 +26,13 @@ public class exercicio1Main {
 //            System.out.println("Nome: "+ e.getNome());
 //            System.out.println("Endereço: "+ e.getEndereço());
 //            System.out.println("Salario Total: "+ e.);
-            e.calcularSalario();
+//            e.calcularSalario();
+            if (e instanceof Chefe){
+                e.calcularSalario();
+            }
+            if (e instanceof Comissionado){
+                e.calcularSalario();
+            }
         }
 
 //        empregados.add(comissionado);

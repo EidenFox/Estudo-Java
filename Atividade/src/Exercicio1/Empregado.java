@@ -30,4 +30,13 @@ public abstract class Empregado {
     public void setEndereço(String endereço) {
         this.endereço = endereço;
     }
+
+
+    @Override
+    public String toString() {
+        return "Empregado{" +
+                "nome='" + nome + '\'' +
+                ", endereço='" + endereço + '\'' +
+                '}';
+    }
 }

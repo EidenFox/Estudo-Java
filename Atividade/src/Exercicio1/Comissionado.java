@@ -9,6 +9,14 @@ public class Comissionado extends Empregado{
 
     }
 
+    public Comissionado(double salarioBase, double comissao, int quantidade, String nome, String endereco){
+        super(nome, endereco);
+        this.setSalarioBase(salarioBase);
+        this.setQuantidade(quantidade);
+        this.setComissao(comissao);
+    }
+
+
     public double getSalarioBase() {
         return salarioBase;
     }
@@ -35,7 +43,20 @@ public class Comissionado extends Empregado{
 
     @Override
     public double calcularSalario() {
+        double SF = (salarioBase + (comissao * quantidade));
+        System.out.println("-----Comissionado-----");
+        System.out.println("Salário Final: "+ SF);
+        System.out.println("----------------------");
+        return SF;
+    }
 
-        return 0;
+
+    @Override
+    public String toString() {
+        return "Comissionado{" +
+                "salarioBase=" + salarioBase +
+                ", comissao=" + comissao +
+                ", quantidade=" + quantidade +
+                '}';
     }
 }

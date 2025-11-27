@@ -60,12 +60,11 @@ public class CategoriaDao {
 
 
 
-    public List<Categoria> categoriaList(Boolean estado){
+    public List<Categoria> categoriaList(){
         List<Categoria> categorias = new ArrayList<>();
-        String sql = "SELECT * FROM categoria WHERE estadoCategoria = ? ORDER BY id ASC";
+        String sql = "SELECT * FROM categoria ORDER BY id ASC";
         try (Connection conn = Conexao.conectar();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setBoolean(1, estado);
             try(ResultSet rs = stmt.executeQuery()){
                 while (rs.next()){
                     Categoria c = new Categoria();
@@ -76,11 +75,7 @@ public class CategoriaDao {
                     categorias.add(c);
                 }
 
-            } catch (Exception e) {
-                throw new RuntimeException(e);
             }
-
-
         }catch (Exception e){
             System.out.println("Erro: " + e.getMessage());
             e.printStackTrace();

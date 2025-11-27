@@ -21,7 +21,7 @@ public class ProdutoDao {
             stmt.setInt(4, produto.getCategoria().getID());
             stmt.executeUpdate();
 
-            System.out.println("Produto cadastrado com sucesso!");
+            System.out.println("Produto cadastrado com sucesso :>!");
             return true;
         } catch (Exception e) {
             System.out.println("Erro: "+ e.getMessage());
@@ -70,12 +70,12 @@ public class ProdutoDao {
         try (Connection conn = Conexao.conectar();
         PreparedStatement stmt = conn.prepareStatement(sql)){
             stmt.setString(1, produto.getNome());
-            stmt.setDouble(2, produto.getID());
+            stmt.setDouble(2, produto.getPreco());
             stmt.setInt(3, produto.getQuantidade());
             stmt.setInt(4, produto.getCategoria().getID());
             stmt.setInt(5, produto.getID());
             stmt.executeUpdate();
-            System.out.println("Produto Atualizado com sucesso!");
+            System.out.println("Produto Atualizado com sucesso >w<!");
             return true;
         }catch (SQLException e){
             System.out.println("Erro: "+ e.getMessage());
@@ -85,13 +85,14 @@ public class ProdutoDao {
     }
 
     public boolean excluir(int id){
+        //Soft delete, não exclui, só deixa inativo
         String sql = "UPDATE produto SET state = 0 WHERE id = ?";
 
         try(Connection conn = Conexao.conectar();
         PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, id);
             stmt.executeUpdate();
-            System.out.println("Produto inativado com sucesso!");
+            System.out.println("Produto inativado com sucesso OwO!");
         } catch (Exception e) {
             System.out.println("Erro: "+ e.getMessage());
             e.printStackTrace();
@@ -107,7 +108,7 @@ public class ProdutoDao {
             PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, id);
             stmt.executeUpdate();
-            System.out.println("Produto ativado com sucesso!");
+            System.out.println("Produto ativado com sucesso WoW!");
         } catch (Exception e) {
             System.out.println("Erro: "+ e.getMessage());
             e.printStackTrace();

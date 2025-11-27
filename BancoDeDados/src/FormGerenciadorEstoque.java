@@ -22,6 +22,7 @@ public class FormGerenciadorEstoque extends JFrame{
     private JButton calcelarButton;
     private JButton editarButton;
     private JComboBox<Categoria> categoriaCB;
+    private JButton categoriasButton;
 
     ProdutoDao produtoDao = new ProdutoDao();
     static int id;
@@ -157,6 +158,13 @@ public class FormGerenciadorEstoque extends JFrame{
                 habilitarCampos(false);
             }
         });
+        categoriasButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                FormCategorias formCategorias = new FormCategorias();
+                formCategorias.setVisible(true);
+            }
+        });
     }
 
     public void habilitarCampos(Boolean status){
@@ -175,7 +183,7 @@ public class FormGerenciadorEstoque extends JFrame{
 
     public void carregarCategorias(){
         CategoriaDao categoriaDao = new CategoriaDao();
-        List<Categoria> lista = categoriaDao.categoriaList(true);
+        List<Categoria> lista = categoriaDao.categoriaList();
 
         categoriaCB.removeAllItems();
         for (Categoria c : lista){

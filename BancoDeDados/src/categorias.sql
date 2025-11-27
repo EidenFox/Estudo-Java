@@ -12,3 +12,19 @@ insert into categoria (nomeCategoria, descricaoCategoria) values
     ("Null", "Categoria apenas para teste");
 
 select * from categoria;
+
+select * from produto;
+
+
+
+
+SELECT
+	p.id AS 'ID',
+	p.nome AS 'Produto',
+    p.quantidade AS 'Quantidade',
+    p.preco AS 'Preço',
+    p.categoria AS 'Categoria',
+    c.descricaoCategoria as 'Descrição'
+FROM produto p
+JOIN categoria c ON p.categoria = c.id
+WHERE p.state = 1;
